@@ -1,0 +1,47 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd ">
+		
+
+	<!-- 组件扫描可以扫描类中标记有controller、service、repsitory、component注解 
+	这里只扫描标记有controlle注解的类
+	-->
+	<context:component-scan base-package="cn.yintai.test.controller"></context:component-scan>
+	
+	<!-- 注解的处理器映射器和适配器 -->
+	<!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/> -->
+	<!-- 使用mvc:annotation-driven代替上边的两行配置 -->
+	<mvc:annotation-driven >
+	</mvc:annotation-driven>
+	
+
+	
+	<!-- 视图解析器 -->
+		<!-- jsp视图解析器 -->
+	<!-- ViewResolver -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- prefix：视图地址的前缀 -->
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<!-- suffix：视图地址的后缀-->
+		<property name="suffix" value=".jsp" />
+	</bean>
+  
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+		<property name="useDefaultSuffixPattern" value="false"></property>
+	</bean>
+	
+
+</beans>
